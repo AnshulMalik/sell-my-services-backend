@@ -5,3 +5,8 @@ cache:
     - "node_modules"
 script:
   - npm test
+services:
+  - mysql
+before_install:
+  - mysql -e "CREATE DATABASE IF NOT EXISTS $DATABSE_NAME;"
+  - mysql -u $DATABASE_USERNAME --password=$DATABASE_PASSWORD < test/travis.sql
